@@ -1,0 +1,80 @@
+[
+  {
+    "component": "ExpensiveComponent",
+    "phase": "mount",
+    "actualDuration": 0.9,
+    "baseDuration": 0.7,
+    "startTime": 346.6,
+    "commitTime": 347.8,
+    "optimizationApplied": "memoization",
+    "renderTime": 0.9,
+    "stateUpdates": 2,
+    "propsReceived": 5,
+    "propsUsed": 3
+  },
+  {
+    "component": "ExpensiveComponent",
+    "phase": "update",
+    "actualDuration": 1.5,
+    "baseDuration": 1.2,
+    "startTime": 1358.5,
+    "commitTime": 1359.3,
+    "optimizationApplied": "none",
+    "renderTime": 1.5,
+    "stateUpdates": 3,
+    "propsReceived": 4,
+    "propsUsed": 2
+  },
+  {
+    "component": "FastComponent",
+    "phase": "mount",
+    "actualDuration": 0.1,
+    "baseDuration": 0.08,
+    "startTime": 2355.5,
+    "commitTime": 2355.6,
+    "optimizationApplied": "code-splitting",
+    "renderTime": 0.1,
+    "stateUpdates": 1,
+    "propsReceived": 2,
+    "propsUsed": 2
+  },
+  {
+    "component": "FastComponent",
+    "phase": "update",
+    "actualDuration": 0.2,
+    "baseDuration": 0.15,
+    "startTime": 136.4,
+    "commitTime": 136.9,
+    "optimizationApplied": "memoization",
+    "renderTime": 0.2,
+    "stateUpdates": 1,
+    "propsReceived": 3,
+    "propsUsed": 3
+  },
+  {
+    "component": "ExpensiveComponent",
+    "phase": "update",
+    "actualDuration": 2.3,
+    "baseDuration": 2.0,
+    "startTime": 1147.9,
+    "commitTime": 1148.7,
+    "optimizationApplied": "none",
+    "renderTime": 2.3,
+    "stateUpdates": 4,
+    "propsReceived": 6,
+    "propsUsed": 5
+  },
+  {
+    "component": "ExpensiveComponent",
+    "phase": "mount",
+    "actualDuration": 3.2,
+    "baseDuration": 3.0,
+    "startTime": 2467.1,
+    "commitTime": 2468.3,
+    "optimizationApplied": "lazy-loading",
+    "renderTime": 3.2,
+    "stateUpdates": 2,
+    "propsReceived": 5,
+    "propsUsed": 4
+  }
+]
