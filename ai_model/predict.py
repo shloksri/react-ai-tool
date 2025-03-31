@@ -2,6 +2,7 @@ import sys
 import joblib
 import json
 import numpy as np
+import pandas as pd
 import os
 
 # Define file paths
@@ -23,12 +24,28 @@ label_encoder = joblib.load(label_encoder_path)
 # Load input features from CLI argument
 input_features = json.loads(sys.argv[1])
 
-# Reshape and normalize input using the same scaler used in training
-input_features = np.array(input_features).reshape(1, -1)
-input_features = scaler.transform(input_features)
+# Check if the input is a list (array of values)
+if isinstance(input_features, list):
+    # If it's a list, we need to convert it into a dictionary with expected keys
+    expected_features = ["actualDuration", "renderTime", "stateUpdates", "propsReceived", "propsUsed"]
+    if len(input_features) != len(expected_features):
+        print(f"❌ Error: Input feature length mismatch. Expected {len(expected_features)} values.")
+        sys.exit(1)
+    input_features = dict(zip(expected_features, input_features))
+
+# Ensure all required features are present (fill missing ones with -1)
+for feature in expected_features:
+    if feature not in input_features:
+        input_features[feature] = -1  # Placeholder if unknown
+
+# Convert input to DataFrame (ensures correct order)
+input_df = pd.DataFrame([input_features], columns=expected_features)
+
+# Normalize input using the trained scaler
+input_scaled = scaler.transform(input_df)
 
 # Predict optimization technique
-prediction = model.predict(input_features)[0]
+prediction = model.predict(input_scaled)[0]
 
 # Convert numerical prediction back to label
 predicted_label = label_encoder.inverse_transform([prediction])[0]

@@ -19,17 +19,12 @@ print("🔍 Available optimizations:", df["optimizationApplied"].unique())
 # Adjust `optimizationApplied` based on `actualDuration`
 def adjust_labels(row):
     actual_duration = row["actualDuration"]
-    component = row["component"]  # Identify the component type
 
     # Classify fast renders as optimized
-    if actual_duration <= 0.05:
-        return "none"
+    if 0 <= actual_duration <= 0.05:
+        return "optimized"
     
-    # Explicitly classify expensive components as needing memoization
-    if actual_duration > 0.05 and "Expensive" in component:
-        return "memoization"
-
-    # Keep the original optimization label otherwise
+    # Keep the original optimization applied label otherwise
     return row["optimizationApplied"]
 
 df["optimizationApplied"] = df.apply(adjust_labels, axis=1)

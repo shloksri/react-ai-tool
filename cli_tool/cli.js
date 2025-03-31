@@ -41,10 +41,11 @@ async function analyzePerformance() {
   }
 
   const inputFeatures = [
-    componentData.actualDuration,
-    componentData.baseDuration,
-    componentData.startTime,
-    componentData.commitTime,
+    componentData.actualDuration, // actualDuration
+    componentData.renderTime, // renderTime
+    componentData.stateUpdates, // stateUpdates
+    componentData.propsReceived, // propsReceived
+    componentData.propsUsed || -1, // propsUsed (use -1 if undefined)
   ];
 
   console.log("🚀 Running AI model prediction...");

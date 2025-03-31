@@ -16,33 +16,15 @@ df = pd.DataFrame(logs)
 # Check available labels
 print("🔍 Available optimizations:", df["optimizationApplied"].unique())
 
-# Adjust `optimizationApplied` based on `actualDuration`
-def adjust_labels(row):
-    actual_duration = row["actualDuration"]
-    component = row["component"]  # Identify the component type
-
-    # Classify fast renders as optimized
-    if actual_duration <= 0.05:
-        return "none"
-    
-    # Explicitly classify expensive components as needing memoization
-    if actual_duration > 0.05 and "Expensive" in component:
-        return "memoization"
-
-    # Keep the original optimization label otherwise
-    return row["optimizationApplied"]
-
-df["optimizationApplied"] = df.apply(adjust_labels, axis=1)
-
 # Encode categorical labels
 label_encoder = LabelEncoder()
 df["optimizationApplied"] = label_encoder.fit_transform(df["optimizationApplied"])
 
-# Feature Selection (Including actualDuration)
-X = df[["actualDuration", "renderTime", "stateUpdates", "propsReceived", "propsUsed"]]
+# Feature Selection
+X = df[["renderTime", "stateUpdates", "propsReceived", "propsUsed"]]
 y = df["optimizationApplied"]
 
-# Normalize Features
+# Normalize Features (Important for models that depend on feature scale)
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
 

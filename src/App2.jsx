@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 
-// ChildComponent is wrapped with React.memo to prevent unnecessary re-renders
-const ChildComponent = React.memo(({ count }) => {
-  console.log("ChildComponent rendered");
-  return <div>Count: {count}</div>;
+// FastComponent is wrapped with React.memo to prevent unnecessary re-renders
+const FastComponent = React.memo(({ count }) => {
+  console.log("FastComponent rendered");
+  return (
+    <div>
+      Fast Component <br />
+      Count: {count}
+    </div>
+  );
 });
 
-const OtherComponent = ({ otherCount }) => {
-  console.log("OtherComponent rendered");
-  return <div>Other Count: {otherCount}</div>;
+const ExpensiveComponent = ({ otherCount }) => {
+  console.log("ExpensiveComponent rendered");
+  return (
+    <div>
+      Expensive Component <br />
+      Count: {otherCount}
+    </div>
+  );
 };
 
 function App2() {
@@ -18,8 +28,10 @@ function App2() {
   return (
     <div>
       <h1>React.memo Example</h1>
-      <ChildComponent count={count} />
-      <OtherComponent otherCount={otherCount} />
+      <FastComponent count={count} />
+      <br />
+      <ExpensiveComponent otherCount={otherCount} />
+      <br />
       <button onClick={() => setCount(count + 1)}>Increment Count</button>
       <button onClick={() => setOtherCount(otherCount + 1)}>
         Change Other Count
