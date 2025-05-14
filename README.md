@@ -286,8 +286,6 @@ With further enhancements, this tool has the potential to become a **standard op
 
 ---
 
-This should now cover **AWS, Azure, and Google Cloud AI integration** for **scalability and automation**. Let me know if you want any refinements! 😊
-
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
